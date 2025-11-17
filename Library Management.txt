@@ -1,0 +1,82 @@
+#include <bits/stdc++.h>
+using namespace std;
+ int num;
+class Libraryy_Management{
+    string s;
+    vector<string>Library;
+public:
+    Libraryy_Management() {
+        cout<<"----Welcome To Library Management------- \n";
+        cout<<"->You must write at least one a book-<\n\n";
+        int How_many_wtrie_book;cin>>How_many_wtrie_book;
+        for (int i=0;i<How_many_wtrie_book;i++) {
+            string ss;cin>>ss;
+            Library.push_back(ss);
+        }
+        cout<<"1-type an add to add a book \n2-type delete to delete a book\n3-type search to search a book \n\n";
+    }
+
+        void setter(string s) {
+            this->s=s;
+        }
+
+    void add(int number) {
+        for (int i=0;i<number;i++) {
+            string name;cin>>name;
+            Library.push_back(name);
+        }
+    }
+   void search(string serach) {
+        auto it=find(Library.begin(),Library.end(),serach);
+        if (it!=Library.end()) {
+            cout<<"The Book is here \n";
+        }
+        else cout<<"The Book is not here\n";
+    }
+
+    void deletee(string de) {
+        auto it = find(Library.begin(), Library.end(), de);
+        if (it != Library.end()) {
+            Library.erase(it);
+            cout << "Deleted successfully.\n";
+        } else {
+            cout << "The Book is not here, cannot delete!\n";
+        }
+    }
+
+};
+
+int main() {
+
+
+      Libraryy_Management object;
+        string s;cin>>s;
+    try {
+        if (s!="add"&&s!="delete"&&s!="search") {
+            throw string("Erro Input");
+        }
+    }
+    catch (const string& s) {
+        cout<<s<<endl;
+        return 0;
+    }
+         object.setter(s);
+        vector<string>Libraray;
+        if (s=="add") {
+            cout<<"Write how many books i will add \n"<<endl;
+            cin>>num;
+           object.add(num);
+        }
+    else if (s=="search") {
+        cout <<"type the world you will search\n";
+        string world;cin>>world;
+        object.search(world);
+    }
+    else {
+        cout<<"type the world you will delete\n";
+        string world ;cin>>world;
+        object.deletee(world);
+    }
+
+
+}
