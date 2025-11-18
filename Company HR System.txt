@@ -6,7 +6,7 @@ protected:
     int id ;
     double sallery;
 public:
-    Employee();
+    
     Employee(string name,int id,double sallery) {
         this->name=name;this ->id=id;this->sallery=sallery;
     }
