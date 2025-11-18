@@ -1,0 +1,150 @@
+#include <bits/stdc++.h>
+using namespace std;
+class Employee {
+protected:
+    string name;
+    int id ;
+    double sallery;
+public:
+    Employee();
+    Employee(string name,int id,double sallery) {
+        this->name=name;this ->id=id;this->sallery=sallery;
+    }
+    virtual string get_Role() {
+        return  "Employee";
+    }
+    virtual string get_name() {
+        return name;
+    }
+    virtual int get_id() {
+        return id;
+    }
+    virtual double get_sallery() {
+        return sallery;
+    }
+};
+class Manger:public Employee {
+public:
+    Manger(string s,int num,double sall):Employee(s,num,sall) {}
+    string get_Role() override {
+        return "Manger";
+    }
+    string get_name() override {
+        return name;
+    }
+    int get_id() override {
+        return id;
+    }
+    double get_sallery() override {
+        return sallery+2000;
+    }
+};
+class Devlopers:public  Employee {
+public:
+    Devlopers(string s,int num,double sa):Employee(s,num,sa){}
+    string get_Role() override {
+        return "Devlopers";
+    }
+    string get_name() override {
+        return name;
+    }
+    int get_id() override {
+        return id;
+    }
+    double get_sallery() override {
+        return sallery;
+    }
+};
+int main() {
+
+cout<<"-----Welcome to Company HR System------"<<endl<<endl;
+    cout<<"If you want to to intervene departement Emloyees Enter (YES)"<<endl;
+    cout<<"If you want to Do not enter departement Employees Enter (NO)"<<endl;
+    string selcect;cin>>selcect;
+    vector<Employee*>Employees;
+    if (selcect=="YES") {
+        cout<<"-----Enter How many Employees-----"<<endl;
+        int num;cin>>num;
+        for (int i=1;i<=num;i++) {
+            cout<<"Enter the name of number of Employee ("<<i<<')'<<endl;
+            string name;cin>>name;
+            cout<<"Enter the id of number of Employee ("<<i<<')'<<endl;
+            int id ;cin>>id;
+            cout<<"Enter the sallery of number of Employee ("<<i<<')'<<endl;
+            double sallery;cin>>sallery;
+            Employees.push_back(new Employee(name,id,sallery));
+        }
+    }
+        cout<<"\n";
+    cout<<"If you want to to intervene a Manger office Enter (YES)"<<endl;
+    cout<<"If you want to Do not enter a Manger office Enter (NO)"<<endl;
+    string sel;cin>>sel;
+    if (sel=="YES") {
+        cout<<"Welcome you  in a   manger office \n\n";
+        cout<<"Enter the name of a manger \n";
+        string name_mange;cin>>name_mange;
+        cout<<"Enter the id of a manger \n";
+        int id_mange;cin>>id_mange;
+        cout<<"Enter the sallery of a manger \n";
+        double sallery_mange;cin>>sallery_mange;
+        // Manger Menge;
+        Employees.push_back(new Manger(name_mange,id_mange,sallery_mange));
+    } cout<<"If you want to to intervene departement Developers Enter (YES)"<<endl;
+    cout<<"If you want to Do not enter departement Developers Enter (NO)"<<endl;
+    string se;cin>>se;
+    if (se=="YES") {
+        cout<<"Welcome you in departement Developers \n\n";
+        cout<<"Enter How many Developers \n";
+        int num_Dev;cin>>num_Dev;
+        for (int i=1;i<=num_Dev;i++) {
+            cout<<"Enter the name of number of Developers ("<<i<<')'<<endl;
+            string name_dev;cin>>name_dev;
+            cout<<"Enter the id of number of Developers ("<<i<<')'<<endl;
+            int id_dev;cin>>id_dev;
+            cout<<"Enter the sallery of number of Developers ("<<i<<')'<<endl;
+            double sallery_dev;cin>>sallery_dev;
+            Employees.push_back(new Devlopers(name_dev,id_dev,sallery_dev));
+        }
+    }
+    cout<<"You wnat to show all results the company Enter(YES)";
+    cout<<"You want to Exit to the company"<<endl;
+    string final ;cin>>final;
+    if (final=="YES") {
+        for (auto it:Employees) {
+            cout<<"All details for: "<<it->get_Role()<<endl;
+            cout<<"name is: "<<it->get_name()<<endl;
+            cout<<"id is: "<<it->get_id()<<endl;
+            cout<<"sallery is: "<<it->get_sallery()<<endl;
+        }
+    }
+    else {
+        cout<<"Signed out successfully"<<endl;
+        return 0;
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+}
