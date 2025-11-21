@@ -1,0 +1,94 @@
+#include <bits/stdc++.h>
+using namespace std;
+#define  ll long long
+class Base_Account {
+protected:
+    string name;
+    int id;
+    double money;
+public:
+    virtual  void set_data(string s,int i,double mon)=0;
+    virtual  void withdraw(double take)=0;
+    virtual  void deposit(double take)=0;
+    virtual  void transfer(double take)=0;
+};
+class New_Account:public Base_Account {
+public:
+    void set_data(string s, int i, double mon) override {
+        name=s;
+        id=i;
+        money=mon;
+    }
+    void withdraw(double take) override {
+        try {
+            if (take>money) throw "The number IS big";
+            money-=take;
+            cout <<"The withdrawal was successful and the available balance is now: "<<money<<endl;
+
+        }
+        catch (const char* s) {
+            cout<<s<<endl;
+        }
+
+
+    }
+    void deposit(double take) override {
+        money+=take;
+        cout<<"The deposit was successful and the available balance is now:"<<money<<endl;
+
+    }
+    void transfer(double take) override {
+        try {
+            if (take > money) throw "Transfer amount exceeds balance!";
+            money -= take;
+            cout<<"The transfer was successful. Remaining balance: "
+                << money << endl;
+        } catch (const char* s) {
+            cout<<s<<endl;
+        }
+
+
+    }
+
+
+};
+
+int main() {
+    cout<<"Welcome to the bank system project\n\n";
+    cout<<"Enter your details (Name,Id,wallet balance) \n";
+    cout<<"Enter your Name: ";
+    string name;cin>>name;
+    cout<<"Enter your Id: ";
+    ll id;cin>>id;
+    cout<<"Enter your wallet balance: ";
+    double wallet;cin>>wallet;
+    cout<<endl;
+    cout<<"To Enter the deposit, withdrawal, and transfer section, type (OK) else to Exit type (NO)\n";
+    string select;cin>>select;
+    New_Account object;
+    object.set_data(name,id,wallet);
+    if (select=="OK") {
+        cout<<"Choose what you want: withdrawal, deposit, transfer"<<endl;
+        string ss;cin>>ss;
+        if (ss=="withdrawal") {
+            cout<<"Enter The number for withdrawal :";
+            double number;cin>>number;
+            object.withdraw(number);
+        }
+        else if (ss=="deposit") {
+            cout<<"Enter the number for deposit: ";
+            double number;cin>>number;
+            object.deposit(number);
+        }
+        else {
+            cout<<"Enter the number for for transer: ";
+            double number;cin>>number;
+            object.transfer(number);
+        }
+    }
+    else {
+        cout<<"To Exit a succes"<<endl;
+        return 0;
+    }
+
+}
